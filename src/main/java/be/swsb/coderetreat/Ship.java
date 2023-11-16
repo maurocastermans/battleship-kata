@@ -5,9 +5,11 @@ import java.util.Set;
 
 public class Ship {
     private final Set<Cell> occupiedCells;
+    private ShipStatus status;
 
     public Ship(Position startPosition, Direction direction, int length) {
         occupiedCells = setOccupiedCells(startPosition, direction, length);
+        status = ShipStatus.AFLOAT;
     }
 
     public Set<Cell> setOccupiedCells(Position startPosition, Direction direction, int length) {
@@ -47,13 +49,27 @@ public class Ship {
             if (cell.getCellType().equals(CellType.SHIP)) {
                 return;
             }
-            sunken();
         }
+        sunken();
+
     }
 
     private void sunken() {
         for (Cell cell : occupiedCells) {
             cell.setCellType(CellType.SUNKEN);
         }
+        status = ShipStatus.SUNKEN;
+    }
+
+    public ShipStatus getStatus() {
+        return status;
+    }
+
+    @Override
+    public String toString() {
+        return "Ship{" +
+                "occupiedCells=" + occupiedCells +
+                ", status=" + status +
+                '}';
     }
 }
