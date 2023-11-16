@@ -64,12 +64,4 @@ public class Ship {
     public ShipStatus getStatus() {
         return status;
     }
-
-    @Override
-    public String toString() {
-        return "Ship{" +
-                "occupiedCells=" + occupiedCells +
-                ", status=" + status +
-                '}';
-    }
 }

@@ -24,8 +24,10 @@ public class Game {
 
     public String getWinner() {
         if (player.isLost()) {
+            gameEnded();
             return opponent.getName();
         } else if (opponent.isLost()) {
+            gameEnded();
             return player.getName();
         } else {
             return "No player won yet";
@@ -35,6 +37,11 @@ public class Game {
     public void changeTurns() {
         player.setTurn(!player.isTurn());
         opponent.setTurn(!opponent.isTurn());
+    }
+
+    public void gameEnded() {
+        player.setTurn(false);
+        opponent.setTurn(false);
     }
 
     public Player getPlayer() {
